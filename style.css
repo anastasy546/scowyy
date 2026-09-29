@@ -1,0 +1,1927 @@
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("./fonts/SF-Pro-Display-Regular.otf") format("opentype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("./fonts/SF-Pro-Display-Medium.otf") format("opentype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("./fonts/SF-Pro-Display-Semibold.otf") format("opentype");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("./fonts/SF-Pro-Display-Bold.otf") format("opentype");
+    font-weight: 700;
+}
+
+
+ body {
+    margin: 0;
+    background: #000;
+    padding-top: 140px;
+    
+}
+
+/* Зелёные свечения */
+.background-glow {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 750px;
+    height: 750px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba(124, 255, 106, 0.45) 0%,
+        rgba(124, 255, 106, 0.28) 25%,
+        rgba(80, 200, 70, 0.14) 45%,
+        transparent 75%
+    );
+
+    filter: blur(45px);
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ТЕКСТ И САЙТ */
+.content {
+    position: relative;
+    z-index: 1;
+    
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    /* На главном экране прозрачная */
+    background: transparent;
+
+    transition:
+        transform 0.4s ease,
+        background 0.4s ease,
+        backdrop-filter 0.4s ease;
+}
+
+/* Когда пользователь начал скроллить */
+.header.scrolled {
+    background: rgba(0, 0, 0, 0.9);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Когда шапка прячется */
+.header.hidden {
+    transform: translateY(-100%);
+}
+
+.header__container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 40px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* СТИЛЬ ПОСЛЕ СКРОЛЛА */
+
+.header.scrolled {
+    background: rgba(0, 0, 0, 0.826);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header__logo {
+    margin: 0;
+    color: white;
+}
+
+.header__nav-list {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.header__nav-link,
+.header__nav-links {
+    color: white;
+    text-decoration: none;
+}
+
+.header__logo {
+    margin: 0;
+    color: #fff;
+}
+
+.header__nav-list {
+    display: flex;
+    gap: 40px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.header__nav-link,
+.header__nav-links {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+
+.header__nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.header__logo {
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    line-height: 36px;
+    letter-spacing: 12px;
+}
+
+.header__nav-list {
+    display: flex;
+    gap: 47px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.header__nav-link {
+    position: relative;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 36px;
+    letter-spacing: 2px;
+
+    color: #979797;
+    text-decoration: none;
+
+    transition: color 0.3s ease;
+}
+.header__nav-link::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+
+    width: 100%;
+    height: 2px;
+
+    background: #fff;
+
+    transform: scaleX(0);
+    transform-origin: center;
+
+    transition: transform 0.3s ease;
+}
+.header__nav-link:hover {
+    color: #fff;
+}
+
+.header__nav-link:hover::after {
+    transform: scaleX(1);
+}
+.header__nav-link.active {
+    color: #fff;
+}
+
+.header__nav-link.active::after {
+    transform: scaleX(1);
+}
+.header__nav-links {
+    margin-left: auto;
+}
+
+.header__nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 124px;
+    height: 38px;
+
+    box-sizing: border-box;
+
+    border: 0.5px solid #7CFF6A;
+    border-radius: 100px;
+
+    background: rgba(124, 255, 106, 0.1);
+
+    color: #fff;
+    text-decoration: none;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 2px;
+
+    margin-left: auto;
+
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+.header__nav-links:hover {
+    background: rgba(124, 255, 106, 0.15);
+
+    box-shadow:
+        0 0 10px rgba(124, 255, 106, 0.4),
+        0 0 25px rgba(124, 255, 106, 0.25),
+        0 0 45px rgba(124, 255, 106, 0.15);
+}
+.home__container {
+    
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 100px;
+    padding-bottom: 100px;
+    
+}
+.home__text {
+    text-align: center;
+    margin-top: 140px;
+    
+    
+}
+
+.home__title {
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 700;
+    font-size: 100px;
+    line-height: 82px;
+    letter-spacing: -2px;
+
+    
+    margin: 0px;
+     color: transparent;
+
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    
+
+
+    
+}
+.home__description {
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 36px;
+    letter-spacing: 2px;
+
+    color: #979797;
+    margin: 0px;
+
+   
+}
+.home__buttons {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+
+    margin-top: 189px;
+}
+.button__tg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 16px;
+    box-sizing: border-box;
+
+    border-radius: 100px;
+    background: #7CFF6A;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.tg {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    color: #000;
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 2px;
+    line-height: 36px;
+    text-decoration: none;
+}
+
+/* НАВЕДЕНИЕ */
+.button__tg:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 6px 15px rgba(124, 255, 106, 0.35),
+        0 12px 30px rgba(124, 255, 106, 0.25),
+        0 0 50px rgba(124, 255, 106, 0.18);
+}
+
+/* НАЖАТИЕ */
+.button__tg:active {
+    transform: translateY(0) scale(0.96);
+
+    box-shadow:
+        0 3px 10px rgba(124, 255, 106, 0.3),
+        0 0 25px rgba(124, 255, 106, 0.2);
+}
+.home__work {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 49px;
+
+    box-sizing: border-box;
+
+    border: 0.5px solid #7CFF6A;
+    border-radius: 100px;
+
+    background: rgba(124, 255, 106, 0.1);
+
+    color: #fff;
+    text-decoration: none;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 2px;
+    line-height: 36px;
+
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.home__work:hover {
+    background: rgba(124, 255, 106, 0.15);
+
+    box-shadow:
+        0 0 10px rgba(124, 255, 106, 0.4),
+        0 0 25px rgba(124, 255, 106, 0.25),
+        0 0 45px rgba(124, 255, 106, 0.15);
+}
+
+.home__work:active {
+    box-shadow:
+        0 0 15px rgba(124, 255, 106, 0.6),
+        0 0 35px rgba(124, 255, 106, 0.4);
+}
+.video {
+    min-height: 500px;
+    background: transparent;
+}
+.video__container {
+    
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 22px;
+    padding-bottom: 100px;
+    
+}
+.video__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:0px;
+}
+
+
+
+.portfolio {
+    margin: 0;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 2px;
+    line-height: 36px;
+    color: #979797;
+}
+
+.video__content {
+    margin-top: 53px;
+    margin-bottom: 25px;
+}
+.video__title {
+    margin: -18px 0 0;
+    padding: 0;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 82px;
+    letter-spacing: -2px;
+
+    color: transparent;
+
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
+
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+.video__button {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: -2px;
+}
+
+.video__button button {
+    position: relative;
+
+    padding: 0;
+    border: none;
+    background: none;
+
+    color: #7CFF6A;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 2px;
+    line-height: 36px;
+
+    cursor: pointer;
+}
+
+/* точка */
+.video__button-vertical::after {
+    content: "·";
+
+    position: absolute;
+    right: -12px;
+
+    color: #7CFF6A;
+}
+
+/* полоска */
+.video__button button::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+
+    width: 100%;
+    height: 2px;
+
+    background: #fff;
+
+    transform: scaleX(0);
+    transform-origin: center;
+
+    transition: transform 0.25s ease;
+}
+
+/* активная кнопка */
+.video__button button.active::before {
+    transform: scaleX(1);
+}
+
+/* наведённая кнопка */
+.video__button button.hovered::before {
+    transform: scaleX(1);
+}
+
+/* активная кнопка НЕ должна показывать полоску,
+   если мышь наведена на другую */
+.video__button.has-hover button.active:not(.hovered)::before {
+    transform: scaleX(0);
+}
+.video__content {
+    margin-top: 53px;
+    margin-bottom: 0px;
+}
+
+.video__vertical,
+.video__horizontal {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 48px;
+}
+
+/* горизонтальные изначально скрыты */
+.video__horizontal {
+    display: none;
+}
+
+/* вертикальные */
+.video__item-vertical {
+    width: 319px;
+}
+
+/* горизонтальные */
+.video__item-horizontal {
+    width: 560px;
+}
+
+.video__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+
+.video__item video {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* кнопка по центру видео */
+.video__pause {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 56px;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: translate(-50%, -50%);
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+
+    color: #fff;
+
+    cursor: pointer;
+
+    opacity: 0;
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.video__item:hover .video__pause {
+    opacity: 1;
+}
+
+.video__pause:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.video__pause span {
+    font-size: 16px;
+}
+
+/* эффект наведения */
+.video__pause:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translate(-50%, -50%) scale(1.08);
+}
+.video__vertical,
+.video__horizontal {
+    animation: videoAppear 0.5s ease forwards;
+}
+
+@keyframes videoAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ===== СВЕЧЕНИЕ ИГРАЮЩЕГО ВИДЕО ===== */
+
+.video__item {
+    position: relative;
+    overflow: visible;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+/* само видео */
+.video__item video {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+/* свечение */
+.video__item.playing {
+    box-shadow:
+        0 0 20px rgba(124, 255, 106, 0.30),
+        0 0 45px rgba(124, 255, 106, 0.20),
+        0 0 80px rgba(124, 255, 106, 0.15);
+    transition: box-shadow 0.4s ease;
+}
+
+/* кнопка PLAY */
+.video__pause {
+    position: absolute;
+    z-index: 5;
+}
+.results__container {
+    max-width: 1140px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 22px;
+    padding-bottom: 100px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   RESULTS
+========================= */
+
+
+
+.results__text {
+    width: 100%;
+    text-align: center;
+}
+
+.portfolio1 {
+    margin: 0;
+    padding: 0;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 2px;
+    line-height: 36px;
+
+    color: #979797;
+
+    text-align: center;
+}
+
+.results__title {
+    margin: -18px 0 0;
+    padding: 0;
+
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 82px;
+    letter-spacing: -2px;
+
+    color: transparent;
+
+    background-color: #fff;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    text-align: center;
+}
+
+
+/* =========================
+   ОБЛАСТЬ КАРУСЕЛИ
+========================= */
+
+.results__content {
+    position: relative;
+
+    width: 100%;
+
+    margin: 0;
+    padding-top: 45px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   КАРТОЧКИ
+========================= */
+
+.results__cards {
+    position: relative;
+
+    width: 100%;
+    height: 491px;
+
+    margin: 0;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   ВСЕ КАРТОЧКИ
+========================= */
+
+.results__cards > article {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 580px;
+    height: 491px;
+
+    margin: 0;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.82);
+
+    transition:
+        transform .5s cubic-bezier(.22,.61,.36,1),
+        opacity .8s ease;
+
+    z-index: 1;
+}
+
+
+/* =========================
+   ЦЕНТРАЛЬНАЯ КАРТОЧКА
+========================= */
+
+.results__cards > article.active {
+    opacity: 1;
+
+    background: #0a0a0a;
+
+    box-shadow:
+        0 0 25px rgba(124, 255, 106, 0.20),
+        0 0 55px rgba(124, 255, 106, 0.12),
+        0 0 90px rgba(124, 255, 106, 0.06);
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+
+    pointer-events: auto;
+    z-index: 3;
+}
+
+
+/* =========================
+   КАРТОЧКА СЛЕВА
+========================= */
+
+.results__cards > article.prev {
+    opacity: .45;
+
+    transform:
+        translate(calc(-50% - 250px), -50%)
+        scale(.9);
+
+    z-index: 2;
+}
+
+
+/* =========================
+   КАРТОЧКА СПРАВА
+========================= */
+
+.results__cards > article.next {
+    opacity: .45;
+
+    transform:
+        translate(calc(-50% + 250px), -50%)
+        scale(.9);
+
+    z-index: 2;
+}
+
+
+/* =========================
+   СТРЕЛКИ
+========================= */
+
+.around1,
+.around2 {
+    position: absolute;
+
+    width: 71px;
+    height: 51px;
+
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    background: #132910;
+    border: 1px solid #7CFF6A;
+    border-radius: 140px;
+
+    cursor: pointer;
+
+    z-index: 20;
+}
+
+
+/*
+   ВАЖНО:
+
+   .around1 находится в .results__content
+   .around2 находится в .results__cards
+
+   Поэтому у них разные top.
+   Но визуально они попадут на одну и ту же высоту.
+*/
+
+
+/* ЛЕВАЯ СТРЕЛКА */
+
+.around1 {
+    left: 0;
+
+    /*
+       75px — padding-top .results__content
+       245.5px — половина высоты карточки 491px
+    */
+    top: calc(45px + 245.5px);
+
+    transform: translate(-100%, -50%);
+}
+
+
+/* ПРАВАЯ СТРЕЛКА */
+
+.around2 {
+    right: 0;
+
+    /*
+       .around2 уже находится внутри .results__cards,
+       поэтому здесь только половина 491px
+    */
+    top: 245.5px;
+
+    transform: translate(100%, -50%);
+}
+
+
+/* ИКОНКИ */
+
+.around1 img,
+.around2 img {
+    width: 24px;
+    height: 24px;
+
+    object-fit: contain;
+}
+
+
+/* =========================
+   КАРТОЧКИ
+========================= */
+
+.result-card {
+    width: 580px;
+    height: 491px;
+
+    border: 1px solid rgba(124, 255, 106, 0.55);
+    border-radius: 16px;
+
+    background: #0a0a0ac0;
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    padding: 16px 32px 35px;
+}
+
+.result-card1 {
+    width: 580px;
+    height: 491px;
+
+    border: 1px solid rgba(124, 255, 106, 0.55);
+    border-radius: 16px;
+
+    background: #0a0a0ac0;
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    padding: 16px 32px 20px;
+}
+
+
+/* =========================
+   ВЕРХ КАРТОЧКИ
+========================= */
+
+.result-card__top {
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+
+/* =========================
+   КЛИЕНТ
+========================= */
+
+.result-card__client {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+}
+
+.youtube {
+    width: 48px;
+    height: 48px;
+
+    padding: 0;
+
+    object-fit: contain;
+}
+
+.result-card__client-info {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================
+   НАЗВАНИЕ
+========================= */
+
+.result-card__title {
+    margin: 0;
+    padding: 0;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0;
+
+    color: #fff;
+}
+
+
+/* =========================
+   ОПИСАНИЕ
+========================= */
+
+.result-card__description {
+    margin: 2px 0 0;
+    padding: 0;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 36px;
+    letter-spacing: 2px;
+
+    color: #3C3C3C;
+}
+
+
+/* =========================
+   ПРОСМОТРЫ
+========================= */
+
+.result-card__watch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 183px;
+    height: 54px;
+
+    box-sizing: border-box;
+
+    border: 0.3px solid #2C2C2C;
+    background: #0000007b;
+
+    border-radius: 10px;
+}
+
+.result-card__watch-text {
+    margin: 0;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 36px;
+    letter-spacing: 0;
+
+    color: #C5C5C5;
+}
+
+.small-text {
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 36px;
+    letter-spacing: 0;
+
+    color: #646464;
+
+    margin-left: 5px;
+}
+
+
+/* =========================
+   ЗАДАЧА
+========================= */
+
+.result-card__task {
+    margin: 3px 0 4px 0;
+    padding: 0;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 36px;
+    letter-spacing: 2px;
+
+    color: #646464;
+}
+
+.result-card__task-text {
+    margin: 0;
+    padding: 0;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 27px;
+    letter-spacing: 0;
+
+    color: #979797;
+}
+
+
+/* =========================
+   ЛИНИЯ
+========================= */
+
+.result-card__line {
+    width: 25px;
+    height: 1px;
+
+    margin: 12px 0 10px 5px;
+
+    flex-shrink: 0;
+
+    background: #7CFF6A;
+}
+
+
+/* =========================
+   РЕЗУЛЬТАТ
+========================= */
+
+.result-card__solution {
+    margin: 0 0 3px 0;
+    padding: 0;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 36px;
+    letter-spacing: 2px;
+
+    color: #BEBEBE;
+}
+
+.result-card__solution-text {
+    margin: 0;
+    padding: 0;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 27px;
+    letter-spacing: 0;
+
+    color: #979797;
+}
+
+
+/* =========================
+   КНОПКИ КАРТОЧКИ
+========================= */
+
+.result-card__buttons {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 14px 22px;
+
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.result-card__button1,
+.result-card__button2,
+.result-card__button3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 198px;
+    height: 51px;
+
+    box-sizing: border-box;
+
+    border: 0.3px solid #2C2C2C;
+    background: #0000007b;
+
+    border-radius: 140px;
+
+    color: #fff;
+    text-decoration: none;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 36px;
+
+    gap: 10px;
+}
+
+.result-card__button1:hover,
+.result-card__button2:hover,
+.result-card__button3:hover {
+    background: rgba(123, 255, 106, 0.033);
+    border-color: #7CFF6A;
+}
+
+
+/* =========================
+   ТОЧКИ
+========================= */
+
+.results__dots {
+    position: absolute;
+
+    left: 50%;
+    bottom: -28px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 3px;
+
+    transform: translateX(-50%);
+
+    z-index: 20;
+}
+
+.results__dot {
+    width: 7px;
+    height: 7px;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: #7CFF6A;
+
+    opacity: .35;
+
+    transition:
+        width .3s ease,
+        opacity .3s ease;
+}
+
+.results__dot.active {
+    width: 8px;
+    opacity: 1;
+}
+.results__container {
+    padding-top: px;
+}
+.what__container{
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 22px;
+    padding-bottom: 100px;
+}
+.what__text{
+    text-align: center;
+}
+.portfolio2{
+    margin: 0;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 2px;
+    line-height: 36px;
+    color: #979797;
+}
+.what__title{
+    margin: -18px 0 0;
+    padding: 0;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 82px;
+    letter-spacing: -2px;
+
+    color: transparent;
+
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
+
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+.what__description{
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 36px;
+    letter-spacing: 0px;
+    color: #979797;
+    margin-top: 0px;
+}
+.what__01 { 
+    width: 551px; 
+    height: 216px; 
+ 
+    box-sizing: border-box; 
+ 
+    border: 0.5px solid #7CFF6A; 
+    background: #040404b1; 
+    border-radius: 20px;
+
+    transition: box-shadow 0.3s ease;
+}
+
+.what__01:hover {
+    background: #000;
+    box-shadow:
+        0 0 15px rgba(124, 255, 106, 0.35),
+        0 0 35px rgba(124, 255, 106, 0.2),
+        0 0 60px rgba(124, 255, 106, 0.1);
+
+}
+
+.what__top {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 38px;
+    padding-top: 33px;
+
+}
+.what__bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 38px;
+    padding-top: 38px;
+}
+.what__content-title{
+    font-family: "SF Pro Display", sans-serif;
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 36px;
+    letter-spacing: -1px;
+    color: #272727;
+    margin-top: 33px;
+    margin-left: 36px;
+    
+}
+.what__content-description{
+    font-family: "SF Pro Display", sans-serif;
+    
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 36px;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    margin-top: 32px;
+    margin-left: 38px;
+}
+.what__content-mini{
+    font-family: "SF Pro Display", sans-serif;
+    
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 27px;
+    letter-spacing: 0px;
+    color: #979797;
+    margin-top: -20px;
+    margin-left: 38px;
+}
+.contact__container{
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-top: 22px;
+    padding-bottom: 100px;
+}
+.contact__text{
+    text-align: center;
+}
+.photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 51px;
+
+    animation: photoPulse 2s ease-in-out infinite;
+}
+
+@keyframes photoPulse {
+    0% {
+        transform: scale(1) rotate(0deg);
+
+        filter:
+            drop-shadow(0 0 5px #000)
+            drop-shadow(0 0 15px #000);
+    }
+
+    50% {
+        transform: scale(1.08) rotate(3deg);
+
+        filter:
+            drop-shadow(0 0 15px #000)
+            drop-shadow(0 0 35px #000)
+            drop-shadow(0 0 60px rgba(0, 0, 0, 0.9));
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+
+        filter:
+            drop-shadow(0 0 5px #000)
+            drop-shadow(0 0 15px #000);
+    }
+}
+.contact__button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 35px;
+}
+
+.contact__tg {
+    width: 249px;
+    height: 51px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    box-sizing: border-box;
+    padding: 0;
+
+    border: 0.5px solid #7CFF6A;
+    border-radius: 100px;
+
+    background: rgba(124, 255, 106, 0.1);
+
+    color: #FFFFFF;
+    text-decoration: none;
+
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 1;
+
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+.contact__tg:hover {
+    background: #7bff6a2d;
+}
+
+.contact__teg {
+    display: block;
+
+    
+    margin: 0;
+    padding: 0;
+
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.contact__yz{
+    font-family: "SF Pro Display", sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 2px;
+    line-height: 36px;
+    color: #7CFF6A;
+
+}
+/* Все элементы до появления */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+/* Когда элемент появился */
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* =========================
+   ФОН
+   ========================= */
+
+.background-glow {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    background: #000;
+}
+
+
+/* Общее свечение */
+
+.glow {
+    position: absolute;
+
+    width: 750px;
+    height: 750px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba(124, 255, 106, 0.45) 0%,
+        rgba(124, 255, 106, 0.28) 25%,
+        rgba(80, 200, 70, 0.14) 45%,
+        transparent 75%
+    );
+
+    filter: blur(45px);
+
+    pointer-events: none;
+
+    will-change: transform, opacity;
+
+    opacity: 1;
+}
+
+
+/* =========================
+   ВЕРХ
+   ========================= */
+
+.glow-1 {
+    animation: fly1 20s ease-in-out infinite alternate;
+}
+
+.glow-2 {
+    animation: fly2 23s ease-in-out infinite alternate;
+}
+
+.glow-3 {
+    animation: fly3 22s ease-in-out infinite alternate;
+}
+
+.glow-4 {
+    animation: fly4 25s ease-in-out infinite alternate;
+}
+
+
+/* =========================
+   ДВИЖЕНИЕ ПО ВСЕМУ ЭКРАНУ
+   ========================= */
+
+@keyframes fly1 {
+
+    0% {
+        transform: translate(-30vw, -20vh) scale(0.9);
+    }
+
+    25% {
+        transform: translate(40vw, 10vh) scale(1.1);
+    }
+
+    50% {
+        transform: translate(70vw, 55vh) scale(0.95);
+    }
+
+    75% {
+        transform: translate(20vw, 75vh) scale(1.15);
+    }
+
+    100% {
+        transform: translate(-30vw, 30vh) scale(1);
+    }
+
+}
+
+
+@keyframes fly2 {
+
+    0% {
+        transform: translate(60vw, -30vh) scale(1);
+    }
+
+    25% {
+        transform: translate(20vw, 20vh) scale(1.15);
+    }
+
+    50% {
+        transform: translate(-30vw, 60vh) scale(0.9);
+    }
+
+    75% {
+        transform: translate(40vw, 80vh) scale(1.1);
+    }
+
+    100% {
+        transform: translate(70vw, 20vh) scale(1);
+    }
+
+}
+
+
+@keyframes fly3 {
+
+    0% {
+        transform: translate(-40vw, 60vh) scale(1);
+    }
+
+    25% {
+        transform: translate(10vw, 20vh) scale(0.9);
+    }
+
+    50% {
+        transform: translate(70vw, -10vh) scale(1.15);
+    }
+
+    75% {
+        transform: translate(50vw, 60vh) scale(1);
+    }
+
+    100% {
+        transform: translate(-20vw, 80vh) scale(0.95);
+    }
+
+}
+
+
+@keyframes fly4 {
+
+    0% {
+        transform: translate(70vw, 70vh) scale(0.9);
+    }
+
+    25% {
+        transform: translate(20vw, 50vh) scale(1.1);
+    }
+
+    50% {
+        transform: translate(-20vw, 10vh) scale(1);
+    }
+
+    75% {
+        transform: translate(50vw, -20vh) scale(1.15);
+    }
+
+    100% {
+        transform: translate(80vw, 50vh) scale(0.95);
+    }
+
+}
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu {
+    display: none;
+}
+
+
+/* только телефон */
+
+@media (max-width: 768px) {
+
+    .mobile-menu {
+        position: fixed;
+
+        top: 70px;
+        left: 20px;
+        right: 20px;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 10px;
+
+        padding: 20px;
+
+        background: rgba(5, 5, 5, 0.95);
+
+        border: 1px solid rgba(124, 255, 106, 0.25);
+        border-radius: 20px;
+
+        backdrop-filter: blur(15px);
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease,
+            visibility 0.3s ease;
+
+        z-index: 999;
+    }
+
+    .mobile-menu a {
+        display: flex;
+        align-items: center;
+
+        min-height: 45px;
+
+        padding: 0 10px;
+
+        color: #fff;
+        text-decoration: none;
+
+        font-family: "SF Pro Display", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+    }
+
+    .mobile-menu.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+
+    /* превращаем бургер в крестик */
+
+    .burger.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .burger.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+}
+@media (max-width: 768px) {
+
+    .header__container {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        padding: 15px 20px;
+        box-sizing: border-box;
+    }
+
+    /* СТАРАЯ НАВИГАЦИЯ НА ТЕЛЕФОНЕ СКРЫТА */
+    .header__nav {
+        display: none !important;
+    }
+
+    /* КНОПКА БУРГЕРА */
+    .burger {
+        display: flex !important;
+
+        width: 42px;
+        height: 42px;
+
+        padding: 0;
+        margin: 0;
+
+        border: none;
+        background: transparent;
+
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        gap: 5px;
+
+        cursor: pointer;
+    }
+
+    .burger span {
+        display: block;
+
+        width: 22px;
+        height: 1.5px;
+
+        background: #fff;
+        border-radius: 10px;
+
+        transition: transform .3s ease, opacity .3s ease;
+    }
+
+
+    /* =========================
+       МОБИЛЬНОЕ МЕНЮ
+    ========================= */
+
+    .mobile-menu {
+    position: fixed;
+
+    top: 70px;
+    left: 20px;
+
+    width: calc(100vw - 40px);
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    padding: 15px 20px;
+
+    background: rgba(5, 5, 5, 0.96);
+
+    border: 1px solid rgba(124, 255, 106, 0.25);
+    border-radius: 20px;
+
+    backdrop-filter: blur(15px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-10px);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+
+    z-index: 9999;
+}
+
+.mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+    .mobile-menu.open {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .mobile-menu a {
+        display: flex;
+
+        width: 100%;
+        min-height: 45px;
+
+        align-items: center;
+
+        padding: 0 5px;
+
+        box-sizing: border-box;
+
+        color: #fff;
+
+        text-decoration: none;
+
+        font-family: "SF Pro Display", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+    }
+
+
+    /* =========================
+       КРЕСТИК
+    ========================= */
+
+    .burger.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .burger.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+}
